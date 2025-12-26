@@ -1,0 +1,31 @@
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
+    image: backend:prod
+    networks:
+      - docker-practice
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+    env_file:
+      - ./backend/.env.dev
+  
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - docker-practice
+    volumes:
+      - docker-practice:/data/db
+
+networks:
+  docker-practice: 
+    driver: bridge
+
+volumes:
+  docker-practice:
