@@ -1,18 +1,17 @@
 name: test
-on: 
-  pull_request: 
-    branches:
-      - "**"
+on: [push]
 jobs:
   test: 
     name: first test github action
     runs-on: ubuntu-latest
     steps:
       - name: checkout the Repo # Basically mean that github will clone my repo on their machine
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
       
       - name: install dependencies 
         run: npm install
+        working-directory: First
 
       - name: build typescripts file
         run: npm run build
+        working-directory: First
