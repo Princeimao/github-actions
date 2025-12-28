@@ -17,15 +17,12 @@ jobs:
               working-directory: Second
             
             - name: checking linting
-              run: | 
-                npm run lint:check
-                echo "Linting completes" 
+              run: npm run lint:check
               working-directory: Second
 
             - name: checking formatting
-              run: | 
-                npm run format:check 
-                echo "Formating check completed"
+              run: npm run format:check
+              working-directory: Second
     
     testing:
         name: testing unit testing
