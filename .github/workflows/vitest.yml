@@ -1,0 +1,48 @@
+name: testing lint, pritter and unit tests
+on: [push]
+
+jobs: 
+    checks:
+        name: checking linting & formatting
+        runs-on: ubuntu-latest
+        steps: 
+            - name: checkout the repo
+              uses: actions/checkout@v3
+
+            - name: setting node enviornment
+              uses: actions/setup-node@v4
+
+            - name: installing dependencies
+              run: npm install
+              working-directory: Second
+            
+            - name: checking linting
+              run: | 
+                npm run lint:check
+                echo "Linting completes" 
+              working-directory: Second
+
+            - name: checking formatting
+              run: | 
+                npm run format:check 
+                echo "Formating check completed"
+    
+    testing:
+        name: testing unit testing
+        runs-on: ubuntu-latest
+        steps: 
+            - name: checkout the repo
+              uses: actions/checkout@v3
+
+            - name: setting node enviornment
+              uses: actions/setup-node@v4
+
+            - name: installing dependencies
+              run: npm install
+              working-directory: Second
+            
+            - name: checking linting
+              run: | 
+                npm run test
+                echo "Test completed"  
+              working-directory: Second
